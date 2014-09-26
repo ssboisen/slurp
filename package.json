@@ -1,0 +1,35 @@
+{
+  "name": "slurpjs",
+  "version": "0.0.1",
+  "description": "The streaming build system that pipes through a straw!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ssboisen/slurp.git"
+  },
+  "keywords": [
+    "build",
+    "stream",
+    "system",
+    "make",
+    "tool",
+    "asset",
+    "pipeline",
+    "task"
+  ],
+  "author": "Simon Stender Boisen <simon@boisen.it>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ssboisen/slurp/issues"
+  },
+  "homepage": "https://github.com/ssboisen/slurp",
+  "dependencies": {
+    "sequencify": "git://github.com/robrich/sequencify.git#1c66e1c"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.4"
+  }
+}
