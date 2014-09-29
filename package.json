@@ -27,7 +27,9 @@
   },
   "homepage": "https://github.com/ssboisen/slurp",
   "dependencies": {
-    "sequencify": "git://github.com/robrich/sequencify.git#1c66e1c"
+    "q": "^1.0.1",
+    "sequencify": "git://github.com/robrich/sequencify.git#1c66e1c",
+    "stream-to-promise": "^1.0.2"
   },
   "devDependencies": {
     "mocha": "^1.21.4"

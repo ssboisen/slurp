@@ -1,4 +1,7 @@
 var sequencify = require('sequencify');
+var Q = require('q');
+var stream = require('stream');
+var stp = require('stream-to-promise');
 
 function Slurp () {
   return this;
@@ -25,19 +28,34 @@ Slurp.prototype.run = function () {
 
   var res = sequencify(tasks, allTaskNames);
 
-  var taskResult = {}
-
-  function cb(name, val) {
-    taskResult[name] = val;
+  function cb(defer, val) {
+    defer.resolve(val);
   }
 
-  res.sequence.forEach(function (name) {
+  res.sequence.reduce(function (taskResult, name) {
     var task = tasks[name];
     if(!task) { return console.error("Unknown task: " + name); }
 
-    var returnVal = tasks[name].fn.apply(null, [cb.bind(null, name)].concat(task.dep.map(function (dep) { return taskResult[dep]; })));
-    taskResult[name]  = taskResult[name] || returnVal;
-  });
+    var defer = Q.defer();
+    taskResult[name] = defer.promise;
+
+    var deps = task.dep.map(function (dep) { return taskResult[dep]; });
+
+    Q.all(deps)
+    .done(function (fulfilledDeps) {
+      var returnVal = task.fn.apply(null, [cb.bind(null, defer)].concat(fulfilledDeps));
+
+      if(returnVal instanceof stream.Readable) {
+        returnVal = stp(returnVal);
+      }
+
+      if(returnVal) {
+        defer.resolve(returnVal);
+      }
+    });
+
+    return taskResult;
+  }, {});
 };
 
 Slurp.prototype.reset = function () {
