@@ -25,9 +25,9 @@ var paths = {
 
 Anyone can help make this project better - check out the [Contributing guide](/CONTRIBUTING.md)!
 
-[downloads-image]: http://img.shields.io/npm/dm/slurp.svg
-[npm-url]: https://npmjs.org/package/slurp
-[npm-image]: http://img.shields.io/npm/v/slurp.svg
+[downloads-image]: http://img.shields.io/npm/dm/slurpjs.svg
+[npm-url]: https://npmjs.org/package/slurpjs
+[npm-image]: http://img.shields.io/npm/v/slurpjs.svg
 
 [travis-url]: https://travis-ci.org/ssboisen/slurp
 [travis-image]: http://img.shields.io/travis/ssboisen/slurp.svg
